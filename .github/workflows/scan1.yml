@@ -8,6 +8,6 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - name: Start bodgeit
-      run: docker run -d -h=localhost -p 8080:8080 -i -t psiinon/bodgeitt &
+      run: docker run -d -h=localhost -p 8080:8080 -i -t psiinon/bodgeit &
     - name: Run baseline
       run: docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:8080/bodgeit/
