@@ -1,0 +1,12 @@
+name: Baseline bodgeit
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  scan:
+    steps:
+    - name: Start bodgeit
+      run: docker run -d -h=localhost -p 8080:8080 -i -t psiinon/bodgeitt &
+    - name: Run baseline
+      run: docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:8080/bodgeit/
