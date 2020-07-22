@@ -7,7 +7,9 @@ jobs:
   scan:
     runs-on: [ubuntu-latest]
     steps:
+    - name: Create network
+      run: docker network create zapnet
     - name: Start bodgeit
-      run: docker run -d -h=localhost -p 8080:8080 -i -t psiinon/bodgeit &
+      run: docker run -d -h=localhost --net zapnet -p 8080:8080 -i -t psiinon/bodgeit &
     - name: Run baseline
-      run: docker run -t owasp/zap2docker-weekly zap-baseline.py -t http://localhost:8080/bodgeit/
+      run: docker run -t --net zapnet owasp/zap2docker-weekly zap-baseline.py -t http://localhost:8080/bodgeit/
