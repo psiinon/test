@@ -5,6 +5,7 @@ on:
 
 jobs:
   scan:
+    runs-on: [ubuntu-latest]
     steps:
     - name: Start bodgeit
       run: docker run -d -h=localhost -p 8080:8080 -i -t psiinon/bodgeitt &
