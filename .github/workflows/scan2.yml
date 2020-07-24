@@ -10,6 +10,6 @@ jobs:
     - name: Start wavsep
       run: docker run --rm -d -p 8080:8080 owaspvwad/wavsep &
     - name: Start ZAP
-      run: docker run --rm --network host owasp/zap2docker-weekly zap-x.sh -daemon -host localhost -port 8090 -config "api.addrs.addr.name=.*" -config api.addrs.addr.regex=true -config api.disablekey=true &
+      run: docker run --rm -d -p 8090:8090 --network host owasp/zap2docker-weekly zap-x.sh -daemon -host localhost -port 8090 -config "api.addrs.addr.name=.*" -config api.addrs.addr.regex=true -config api.disablekey=true &
     - name: Run ZAP API script
       run: docker run --rm --network host psiinon/zap-testing  python3 wavsep-1.5-spider.py -z localhost -w localhost
