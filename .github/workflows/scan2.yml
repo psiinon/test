@@ -14,4 +14,4 @@ jobs:
     - name: Run ZAP API script
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: docker run --rm --network host --env GITHUB_TOKEN=$GITHUB_TOKEN GITHUB_ACTOR=$GITHUB_ACTOR psiinon/zap-testing ./zap-vs-wavsep-1.5-test.sh -e 10 -n sbsb-test -t 123
+      run: docker run --rm --network host --env GITHUB_TOKEN=$GITHUB_TOKEN --env GITHUB_ACTOR=$GITHUB_ACTOR psiinon/zap-testing ./zap-vs-wavsep-1.5-test.sh -e 10 -n sbsb-test -t 123
