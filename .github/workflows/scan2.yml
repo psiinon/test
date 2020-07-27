@@ -13,5 +13,5 @@ jobs:
       run: docker run --rm -d -p 8090:8090 --network host owasp/zap2docker-weekly zap-x.sh -daemon -host localhost -port 8090 -config "api.addrs.addr.name=.*" -config api.addrs.addr.regex=true -config api.disablekey=true &
     - name: Run ZAP API script
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: docker run --rm --network host --env GITHUB_TOKEN=$GITHUB_TOKEN --env GITHUB_ACTOR=$GITHUB_ACTOR psiinon/zap-testing ./zap-vs-wavsep-1.5-test.sh -e 10 -n sbsb-test -t 123
+        GITHUB_TOKEN: ${{ secrets.PSIINON_TOKEN }}
+      run: docker run --rm --network host --env PSIINON_TOKEN=$PSIINON_TOKEN psiinon/zap-testing ./zap-vs-wavsep-1.5-test.sh -e 10 -n sbsb-test -t 123
