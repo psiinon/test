@@ -24,6 +24,6 @@ jobs:
         pwd
         ls -l
         ls -l test/scripts/scripts
-        chmod +w zaproxy-website/site/content/docs/alerts/*
+        chmod -R +w zaproxy-website/site/content/docs/alerts
         docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live ./zap.sh -dir scripttest -addoninstallall -silent -script /zap/wrk/test/scripts/scripts/generate_alert_pages.js -cmd
         ls -l zaproxy-website/site/content/docs/alerts/
