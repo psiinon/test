@@ -4,11 +4,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  update_docker:
-    runs-on: [ubuntu-latest]
+  handle-release:
+    runs-on: ubuntu-latest
     steps:
-    - name: Update docker
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        path: test
+        fetch-depth: 10
+    - name: Checkout zaproxy-website
+      uses: actions/checkout@v2
+      with:
+        repository: zaproxy/zaproxy-website
+        persist-credentials: false
+        path: zaproxy-website
+        fetch-depth: 0
+    - name: Update alerts
       run: |
-        git clone https://github.com/zaproxy/zap-admin.git
-        git clone https://github.com/zaproxy/zaproxy-website.git
         pwd
+        ls -l
+        ls -l test/scripts/scripts
+        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live ./zap.sh -dir scripttest -addoninstallall -silent -script test/scripts/scripts/generate_alert_pages.js -cmd
+        ls -l zaproxy-website/site/content/docs/alerts/
