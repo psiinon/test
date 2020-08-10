@@ -12,16 +12,17 @@ jobs:
       with:
         path: test
         fetch-depth: 10
-    - name: Checkout zaproxy-website
-      uses: actions/checkout@v2
-      with:
-        repository: zaproxy/zaproxy-website
-        persist-credentials: false
-        path: zaproxy-website
-        fetch-depth: 0
+#    - name: Checkout zaproxy-website
+#      uses: actions/checkout@v2
+#      with:
+#        repository: zaproxy/zaproxy-website
+#        persist-credentials: false
+#        path: zaproxy-website
+#        fetch-depth: 0
     - name: Update alerts
       run: |
         pwd
+        git clone https://github.com/zaproxy/zaproxy-website.git
         ls -l
         ls -l test/scripts/scripts
         chmod -R +w zaproxy-website/site/content/docs/alerts
