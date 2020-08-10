@@ -1,0 +1,14 @@
+name: Update zaptest docker image
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  update_docker:
+    runs-on: [ubuntu-latest]
+    steps:
+    - name: Update docker
+      run: |
+        git clone https://github.com/zaproxy/zap-admin.git
+        git clone https://github.com/zaproxy/zaproxy-website.git
+        pwd
