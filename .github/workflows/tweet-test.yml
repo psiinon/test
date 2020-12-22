@@ -10,6 +10,10 @@ jobs:
     name: Send random tweet from zapbot (1 in 12 chance)
     runs-on: [ubuntu-latest]
     steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
       - name: Checkout
         uses: actions/checkout@v2
         with:
