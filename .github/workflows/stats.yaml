@@ -1,0 +1,31 @@
+name: Update Website Stats
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update_stats:
+    name: Update Website Stats
+    runs-on: ubuntu-latest
+    steps:
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Set up env
+      run: |
+        # Set up AWS CLI
+        export AWSCLI_ACCESS=${{ secrets.AWSCLI_ACCESS }}
+        export AWSCLI_SECRET=${{ secrets.AWSCLI_SECRET }}
+        mkdir ~/.aws
+        echo "[default]" > ~/.aws/config
+        echo "[default]" > ~/.aws/credentials
+        echo "aws_access_key_id = $AWSCLI_ACCESS" >> ~/.aws/credentials
+        echo "aws_secret_access_key = $AWSCLI_SECRET" >> ~/.aws/credentials
+    - name: Sync S3 files
+      run: |
+        mkdir project-zap
+        mkdir project-zap/stats
+        # This will gradually take longer and longer so at some point we could limit it to just recent files
+        aws s3 sync s3://project-zap/stats/ project-zap/stats/
