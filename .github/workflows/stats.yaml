@@ -24,6 +24,7 @@ jobs:
         echo "aws_access_key_id = $AWSCLI_ACCESS" >> ~/.aws/credentials
         echo "aws_secret_access_key = $AWSCLI_SECRET" >> ~/.aws/credentials
         mkdir project-zap
-        mkdir project-zap/stats
+        cd project-zap
+        mkdir stats
         # This will gradually take longer and longer so at some point we could limit it to just recent files
-        aws s3 sync s3://project-zap/stats/ project-zap/stats/
+        aws s3 sync s3://project-zap/stats/ stats/
