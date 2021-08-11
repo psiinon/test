@@ -1,0 +1,11 @@
+name: ZAP integrations tests
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: [ubuntu-latest]
+    steps:
+    - name: Run tests
+      run: docker run --rm -t owasp/zap2docker-tests wrk/baseline_tests.sh
