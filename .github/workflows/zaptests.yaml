@@ -9,4 +9,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run tests
-      run: docker run --rm -t owasp/zap2docker-tests wrk/baseline_tests.sh
+      run: docker run --rm -t psiinon/zap2docker-tests wrk/baseline_tests.sh
