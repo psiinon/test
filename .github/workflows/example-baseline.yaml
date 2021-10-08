@@ -4,7 +4,7 @@ on:
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
-    name: Scan ZAP website
+    name: Baseline example.com
     steps:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@master
