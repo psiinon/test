@@ -13,4 +13,4 @@ jobs:
         uses: zaproxy/action-baseline@master
         with:
           target: 'https://www.example.com/'
-          docker_name: 'zaproxy/zap2docker-live'
+          docker_name: 'owasp/zap2docker-live'
