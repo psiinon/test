@@ -10,7 +10,7 @@ jobs:
     name: Baseline example.com
     steps:
       - name: ZAP Scan
-        uses: zaproxy/action-baseline@master
+        uses: zaproxy/action-baseline@v0.5.0
         with:
           target: 'https://www.example.com/'
           docker_name: 'owasp/zap2docker-live'
