@@ -1,0 +1,13 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan ZAP website
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@master
+        with:
+          target: 'https://www.example.com/'
+          cmd_options: '-d'
