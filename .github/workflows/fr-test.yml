@@ -17,7 +17,7 @@ jobs:
     container:
       image: owasp/zap2docker-stable
       volumes:
-      - /home/runner/work/test/test:/zap/wrk/
+      - /home/runner/work/test/test:/zap/wrk/:rw
     steps:
     - name: Docker
       run: |
