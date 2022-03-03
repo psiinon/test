@@ -31,4 +31,6 @@ jobs:
     - name: Test
       run: |
         echo "Running in action"
-        cat test.out
+        pwd
+        ls
+        cat /home/runner/work/test/test/test.out
