@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: owasp/zap2docker-stable
-      options: -v /__w/test/test:/zap/wrk/:rw
+      options: -v /home/runner/work/test/test:/zap/wrk/:rw
     steps:
     - name: Docker
       run: |
