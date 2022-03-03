@@ -3,9 +3,6 @@ name: ZAP vs Firing Range TEST
 on: 
   workflow_dispatch:
 
-strategy:
-  max-parallel: 2
-
 jobs:
   scan:
     runs-on: ubuntu-latest
