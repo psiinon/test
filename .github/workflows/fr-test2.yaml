@@ -1,0 +1,14 @@
+name: ZAP vs Firing Range TEST2
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Docker
+      run: |
+        docker run --mount type=bind,source=${PWD},target=/zap/wrk -t owasp/zap2docker-live /bin/bash -c "pwd > /zap/wrk/test.out"
+        echo "Running in action"
+        cat test.out
