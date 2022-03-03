@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: owasp/zap2docker-stable
-      options: -v /__w/actions-test-repo/actions-test-repo:/zap/wrk/:rw
+      options: -v /__w/psiinon/test:/zap/wrk/:rw
     steps:
     - name: Docker
       run: |
