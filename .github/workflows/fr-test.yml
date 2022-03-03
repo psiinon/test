@@ -4,7 +4,15 @@ on:
   workflow_dispatch:
 
 jobs:
+  one:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test
+      run: |
+        echo "First step"
+        pwd
   scan:
+    needs: one
     runs-on: ubuntu-latest
     container:
       image: owasp/zap2docker-stable
@@ -21,5 +29,5 @@ jobs:
     steps:
     - name: Test
       run: |
-       echo "Running in action"
+        echo "Running in action"
         cat test.out
