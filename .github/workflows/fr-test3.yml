@@ -12,7 +12,9 @@ jobs:
     - name: Docker
       run: |
         echo "Clone zap-mgmt-scripts"
+        mkdir test
+        cd test
         git clone https://github.com/zapbot/zap-mgmt-scripts.git
         cd zap-mgmt-scripts/scans/firingrange
         echo "Run scan :O"
-        /zap/wrk/zap.sh -cmd -silent -autorun /zap/zap-mgmt-scripts/scans/firingrange/fr-escape.yaml
+        /zap/wrk/zap.sh -cmd -silent -autorun /zap/test/zap-mgmt-scripts/scans/firingrange/fr-escape.yaml
