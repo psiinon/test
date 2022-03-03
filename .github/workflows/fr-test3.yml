@@ -8,11 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: owasp/zap2docker-stable
+      options: --user root
     steps:
     - name: Docker
       run: |
         echo $GITHUB_WORKSPACE
-        sudo mkdir $GITHUB_WORKSPACE/test
+        mkdir $GITHUB_WORKSPACE/test
         #echo "Clone zap-mgmt-scripts"
         #mkdir test
         #cd test
