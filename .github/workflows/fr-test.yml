@@ -3,6 +3,9 @@ name: ZAP vs Firing Range TEST
 on: 
   workflow_dispatch:
 
+strategy:
+  max-parallel: 2
+
 jobs:
   scan:
     runs-on: ubuntu-latest
@@ -12,10 +15,14 @@ jobs:
     steps:
     - name: Docker
       run: |
-        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live /bin/bash -c "pwd > /zap/wrk/test.out; realpath wrk/test.out"
+        echo "Running in Docker?"
+        pwd > /zap/wrk/test.out
+        realpath wrk/test.out
   check:
+    needs: scan
     runs-on: ubuntu-latest
     steps:
     - name: Test
       run: |
+       echo "Running in action"
         cat test.out
