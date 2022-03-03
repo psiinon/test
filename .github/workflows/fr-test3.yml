@@ -1,0 +1,18 @@
+name: ZAP vs Firing Range TEST3
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    container:
+      image: owasp/zap2docker-stable
+    steps:
+    - name: Docker
+      run: |
+        echo "Clone zap-mgmt-scripts"
+        git clone https://github.com/zapbot/zap-mgmt-scripts.git
+        cd zap-mgmt-scripts/scans/firingrange
+        echo "Run scan :O"
+        /zap/wrk/zap.sh -cmd -silent -autorun /zap/zap-mgmt-scripts/scans/firingrange/fr-escape.yaml
