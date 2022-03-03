@@ -9,6 +9,9 @@ jobs:
     steps:
     - name: Docker
       run: |
-        docker run --user=root -v $(pwd):/zap/wrk:rw -t owasp/zap2docker-live /bin/bash -c "pwd > /zap/wrk/test.out"
+        git clone https://github.com/zapbot/zap-mgmt-scripts.git
+        cd zap-mgmt-scripts/scans/firingrange/
+        cat fr-escape.js firing-range-score-main.js  > firing-range-score.js
+        docker run --user=root -v $(pwd):/zap/wrk:rw -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/fr-escape.yaml"
         echo "Running in action"
-        cat test.out
+        cat escape.yml
