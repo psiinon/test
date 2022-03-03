@@ -9,5 +9,5 @@ jobs:
     steps:
     - name: Test
       run: |
-        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live echo "testing 1 2 3" > test.out
+        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live echo "testing 1 2 3" > /zap/wrk/test.out
         cat test.out
