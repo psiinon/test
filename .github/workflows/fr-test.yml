@@ -6,8 +6,16 @@ on:
 jobs:
   scan:
     runs-on: ubuntu-latest
+    container:
+      image: owasp/zap2docker-stable
+      options: -v /__w/actions-test-repo/actions-test-repo:/zap/wrk/:rw
+    steps:
+    - name: Docker
+      run: |
+        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live /bin/bash -c "pwd > /zap/wrk/test.out; realpath wrk/test.out"
+  check:
+    runs-on: ubuntu-latest
     steps:
     - name: Test
       run: |
-        docker run -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-live /bin/bash -c "pwd > wrk/test.out; realpath wrk/test.out"
         cat test.out
