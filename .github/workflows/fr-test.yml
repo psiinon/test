@@ -15,7 +15,8 @@ jobs:
     needs: one
     runs-on: ubuntu-latest
     container:
-      image: owasp/zap2docker-stable
+      image: owasp/zap2docker-live
+      options: --user root
       volumes:
       - /home/runner/work/test/test:/zap/wrk/:rw
     steps:
