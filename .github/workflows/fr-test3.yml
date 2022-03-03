@@ -12,7 +12,7 @@ jobs:
     - name: Docker
       run: |
         echo $GITHUB_WORKSPACE
-        mkdir $GITHUB_WORKSPACE/test
+        sudo mkdir $GITHUB_WORKSPACE/test
         #echo "Clone zap-mgmt-scripts"
         #mkdir test
         #cd test
