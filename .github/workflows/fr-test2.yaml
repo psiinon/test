@@ -9,6 +9,6 @@ jobs:
     steps:
     - name: Docker
       run: |
-        docker run -v /home/runner/work/test/test:/zap/wrk -t owasp/zap2docker-live /bin/bash -c "pwd > /zap/wrk/test.out"
+        docker run -v /home/runner/work/test/test:/zap/wrk:rw -t owasp/zap2docker-live /bin/bash -c "pwd > /zap/wrk/test.out"
         echo "Running in action"
         cat test.out
