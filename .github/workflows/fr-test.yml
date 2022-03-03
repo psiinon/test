@@ -24,7 +24,6 @@ jobs:
       run: |
         echo "Running in Docker?"
         pwd > /zap/wrk/test.out
-        realpath wrk/test.out
   check:
     needs: scan
     runs-on: ubuntu-latest
