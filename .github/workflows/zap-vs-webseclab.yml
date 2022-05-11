@@ -15,7 +15,7 @@ jobs:
 
     - name: Start Webseclab
       run: |
-        docker run --add-host=host.docker.internal:host-gateway --network="host" -p 9090:9090 -i -t psiinon/webseclab /go/bin/webseclab -http=:9090 &
+        docker run --add-host=host.docker.internal:host-gateway  -p 9090:9090 -i -t psiinon/webseclab /go/bin/webseclab -http=:9090 &
 
     - name: Scan Webseclab
       run: |
@@ -23,6 +23,9 @@ jobs:
         # Need to do this so the zap user in docker can write to the file
         touch reflected.yml
         chmod a+w reflected.yml
-        docker run -v $(pwd):/zap/wrk/:rw --add-host=host.docker.internal:host-gateway --network="host" -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/webseclab.yaml -config "scanner.injectable=11" -config "scanner.scanHeadersAllRequests=true"
+        
+        curl http://localhost:9090
+        
+        docker run -v $(pwd):/zap/wrk/:rw --add-host=host.docker.internal:host-gateway  -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/webseclab.yaml -config "scanner.injectable=11" -config "scanner.scanHeadersAllRequests=true"
         ls -l
         cat reflected.yml
