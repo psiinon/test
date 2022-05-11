@@ -15,7 +15,10 @@ jobs:
 
     - name: Start Webseclab
       run: |
-        docker run --add-host=host.docker.internal:host-gateway  -p 9090:9090 -d psiinon/webseclab /go/bin/webseclab -http=:9090 &
+        docker run --network="host" --add-host=host.docker.internal:host-gateway  -p 9090:9090 -d psiinon/webseclab /go/bin/webseclab -http=:9090
+        sleep 5
+        docker ps
+        curl http://localhost:9090
 
     - name: Scan Webseclab
       run: |
@@ -25,8 +28,6 @@ jobs:
         chmod a+w reflected.yml
         
         docker ps
-        
-        sleep 10
         
         curl http://localhost:9090
         
