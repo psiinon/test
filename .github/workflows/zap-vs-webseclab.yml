@@ -24,6 +24,10 @@ jobs:
         touch reflected.yml
         chmod a+w reflected.yml
         
+        docker ps
+        
+        sleep 10
+        
         curl http://localhost:9090
         
         docker run -v $(pwd):/zap/wrk/:rw --add-host=host.docker.internal:host-gateway  -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/webseclab.yaml -config "scanner.injectable=11" -config "scanner.scanHeadersAllRequests=true"
