@@ -1,4 +1,4 @@
-name: ZAP vs Webseclab
+name: ZAP vs SSTI
 
 on: 
   workflow_dispatch:
