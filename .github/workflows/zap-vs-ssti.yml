@@ -1,0 +1,59 @@
+name: ZAP vs Webseclab
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone this repo
+      run: |
+        # Setup git details
+        export GITHUB_USER=psiinon
+        git clone https://github.com/$GITHUB_USER/test.git
+    - name: Start V2SSTI
+      run: |
+        docker run -d -p 127.0.0.1:5000-5100:5000-5100 -p 127.0.0.1:6000-6100:6000-6100 -w /home d10g0mrs/websites_vuln_to_ssti sh ./start_all_services.sh
+    - name: Scan V2SSTI
+      run: |
+        cd test/ssti
+        
+        export file=all.yml
+        # Need to do this so the zap user in docker can write to the file
+        touch $file
+        chmod a+w $file
+
+        echo "section: All URLs\ndetails:" > $file
+
+        #!/bin/bash
+        declare -a targets=(
+         [5000]="Jinja2 - Python"
+         [5001]="Mako - Python"
+        )
+
+        for i in "${!targets[@]}"; do
+          echo "var PORT = $i;" > ssti-score.js
+          echo "var TITLE = \"${targets[$i]}\";" >> ssti-score.js
+          cat ssti-score-main.js >> ssti-score.js
+          echo "$i  -> ${targets[$i]}";
+          export port=$i
+          ./zap.sh -silent -autorun ssti.yaml -dir ssti -cmd
+          docker run -v $(pwd):/zap/wrk/:rw --network="host"  -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/ssti.yaml
+          sleep 5
+        done
+
+        pass=`grep -c "any: Pass" $file`
+        fail=`grep -c "any: FAIL" $file`
+
+        let "score = ($pass * 100) / ($pass + $fail)"
+
+        echo "score: $score%" >> $file
+
+        echo Pass: $pass
+        echo Fail: $fail
+        echo Score: $score%
+
+               
+        ls -l
+        cat $file
