@@ -17,10 +17,11 @@ jobs:
   parameters:
     action: add
     type: standalone
-    file: /Users/simon/Downloads/ZAP_D-2022-03-28/ssti-score.js
+    file: /zap/wrk/ssti-score.js
 - parameters:
     updateAddOns: false
-  install: []
+  install:
+  - ascanrulesAlpha
   uninstall: []
   name: "addOns"
   type: "addOns"
