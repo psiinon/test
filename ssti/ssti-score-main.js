@@ -1,6 +1,6 @@
 // This script will _not_ run on its own - it needs a set of fields prepended to it
 //var DIR = "/zap/wrk/";
-var YAML_FILE = "/Users/simon/workspace/zaproxy-website/site/data/scans/ssti/all.yml";
+var YAML_FILE = "/zap/wrk/all.yml";
 var RULES = [40012, 40026, 90019, 90025, 90035, 90036];
 var target = 'http://localhost:' + PORT + '/';
   
