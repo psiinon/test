@@ -71,14 +71,14 @@ jobs:
       name: "Expression Language Injection"
       threshold: "medium"
       strength: "default"
-    - id: 90035
-      name: "Expression Language Injection"
-      threshold: "medium"
-      strength: "default"
-    - id: 90036
-      name: "Expression Language Injection"
-      threshold: "medium"
-      strength: "default"
+#    - id: 90035
+#      name: "Expression Language Injection"
+#      threshold: "medium"
+#      strength: "default"
+#    - id: 90036
+#      name: "Expression Language Injection"
+#      threshold: "medium"
+#      strength: "default"
   name: "activeScan"
   type: "activeScan"
 - name: "run-script"
