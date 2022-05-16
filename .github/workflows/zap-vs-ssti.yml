@@ -47,6 +47,8 @@ jobs:
 
         pass=`grep -c "any: Pass" $file`
         echo Pass: $pass
+        echo "Test grep for faal.."
+        grep -c "any: FAIL" $file
         fail=`grep -c "any: FAIL" $file`
         echo Fail: $fail
 
