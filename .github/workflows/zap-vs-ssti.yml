@@ -46,9 +46,12 @@ jobs:
         done
 
         pass=`grep -c "any: Pass" $file`
+        echo Pass: $pass
         fail=`grep -c "any: FAIL" $file`
+        echo Fail: $fail
 
         let "score = ($pass * 100) / ($pass + $fail)"
+        echo Score: $score%
 
         echo "score: $score%" >> $file
 
@@ -56,7 +59,4 @@ jobs:
         echo Fail: $fail
         echo Score: $score%
 
-               
-        ls -l
-        cat $file
         echo "--- all done?? ---"
