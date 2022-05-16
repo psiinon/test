@@ -4,6 +4,10 @@ declare -a targets=(
  [5001]="Mako - Python"
 )
 
+cd /zap/wrk/
+
+ls
+
 export file=all.yml
 
 echo "section: All URLs\ndetails:" > $file
