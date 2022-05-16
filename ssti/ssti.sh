@@ -6,6 +6,8 @@ declare -a targets=(
 
 export file=all.yml
 
+echo "section: All URLs\ndetails:" > $file
+
 for i in "${!targets[@]}"; do
   echo "var PORT = $i;" > ssti-score.js
   echo "var TITLE = \"${targets[$i]}\";" >> ssti-score.js
@@ -13,13 +15,17 @@ for i in "${!targets[@]}"; do
   echo "$i  -> ${targets[$i]}";
   export port=$i
   ./zap.sh -silent -autorun ssti.yaml -dir ssti -cmd
+  cat $file
   sleep 5
 done
 
 pass=`grep -c "any: Pass" $file`
+echo Pass: $pass
 fail=`grep -c "any: FAIL" $file`
+echo Fail: $fail
 
 let "score = ($pass * 100) / ($pass + $fail)"
+echo Score: $score%
 
 echo "score: $score%" >> $file
 
