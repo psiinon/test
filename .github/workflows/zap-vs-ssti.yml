@@ -24,7 +24,10 @@ jobs:
         touch $file
         chmod a+w $file
         
-        chmod a+x ssti.sh
+        touch /zap/wrk/ssti-score.js
+        chmod a+w /zap/wrk/ssti-score.js
+        
+        chmod x ssti.sh
         
         docker run -v $(pwd):/zap/wrk/:rw --network="host" owasp/zap2docker-live /zap/wrk/ssti.sh
         
