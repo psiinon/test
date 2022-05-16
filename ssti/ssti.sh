@@ -10,8 +10,7 @@ cd /zap/wrk/
 
 export file=/zap/wrk/all.yml
 
-/zap/zap.sh -silent -addoninstall ascanRulesAlpha -cmd
-
+/zap/zap.sh -silent -addoninstall ascanrulesAlpha -cmd
 
 echo "section: All URLs" > $file
 echo "details:" >> $file
