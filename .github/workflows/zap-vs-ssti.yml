@@ -24,7 +24,7 @@ jobs:
         touch $file
         chmod a+w $file
         
-        chmod +x ssti.sh
+        chmod a+x ssti.sh
         
         docker run -v $(pwd):/zap/wrk/:rw --network="host" owasp/zap2docker-live /zap/wrk/ssti.sh
         
