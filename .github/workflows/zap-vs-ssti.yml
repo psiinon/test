@@ -39,6 +39,9 @@ jobs:
           echo "$i  -> ${targets[$i]}";
           export port=$i
           docker run -v $(pwd):/zap/wrk/:rw  --env port=$i --network="host"  -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/ssti.yaml
+          
+          echo "--- scan run ---"
+          cat $file
           sleep 5
         done
 
@@ -56,3 +59,4 @@ jobs:
                
         ls -l
         cat $file
+        echo "--- all done?? ---"
