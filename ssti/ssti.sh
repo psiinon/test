@@ -2,15 +2,19 @@
 declare -a targets=(
  [5000]="Jinja2 - Python"
  [5001]="Mako - Python"
+ [5002]="Tornado - Python"
+ [5002]="Django - Python"
 )
 
 cd /zap/wrk/
 
-ls
-
 export file=/zap/wrk/all.yml
 
-echo "section: All URLs\ndetails:" > $file
+/zap/zap.sh -silent -addoninstall ascanRulesAlpha -cmd
+
+
+echo "section: All URLs" > $file
+echo "details:" >> $file
 
 for i in "${!targets[@]}"; do
   echo "var PORT = $i;" > ssti-score.js
