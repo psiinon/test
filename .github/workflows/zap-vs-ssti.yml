@@ -23,42 +23,9 @@ jobs:
         # Need to do this so the zap user in docker can write to the file
         touch $file
         chmod a+w $file
-
-        echo "section: All URLs\ndetails:" > $file
-
-        #!/bin/bash
-        declare -a targets=(
-         [5000]="Jinja2 - Python"
-         [5001]="Mako - Python"
-        )
-
-        for i in "${!targets[@]}"; do
-          echo "var PORT = $i;" > ssti-score.js
-          echo "var TITLE = \"${targets[$i]}\";" >> ssti-score.js
-          cat ssti-score-main.js >> ssti-score.js
-          echo "$i  -> ${targets[$i]}";
-          export port=$i
-          docker run -v $(pwd):/zap/wrk/:rw  --env port=$i --network="host"  -t owasp/zap2docker-live zap.sh -cmd -silent -autorun /zap/wrk/ssti.yaml
-          
-          echo "--- scan run ---"
-          cat $file
-          sleep 5
-        done
-
-        pass=`grep -c "any: Pass" $file`
-        echo Pass: $pass
-        echo "Test grep for faal.."
-        grep -c "any: FAIL" $file
-        fail=`grep -c "any: FAIL" $file`
-        echo Fail: $fail
-
-        let "score = ($pass * 100) / ($pass + $fail)"
-        echo Score: $score%
-
-        echo "score: $score%" >> $file
-
-        echo Pass: $pass
-        echo Fail: $fail
-        echo Score: $score%
+        
+        chmod +x ssti.sh
+        
+        ./ssti.sh
 
         echo "--- all done?? ---"
