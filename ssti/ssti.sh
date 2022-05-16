@@ -8,7 +8,7 @@ cd /zap/wrk/
 
 ls
 
-export file=all.yml
+export file=/zap/wrk/all.yml
 
 echo "section: All URLs\ndetails:" > $file
 
@@ -18,7 +18,7 @@ for i in "${!targets[@]}"; do
   cat ssti-score-main.js >> ssti-score.js
   echo "$i  -> ${targets[$i]}";
   export port=$i
-  /zap/zap.sh -silent -autorun ssti.yaml -dir ssti -cmd
+  /zap/zap.sh -silent -autorun /zap/wrk/ssti.yaml -dir ssti -cmd
   cat $file
   sleep 5
 done
