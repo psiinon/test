@@ -18,6 +18,7 @@ for i in "${!targets[@]}"; do
   cat ssti-score-main.js >> ssti-score.js
   echo "$i  -> ${targets[$i]}";
   export port=$i
+  pwd
   /zap/zap.sh -silent -autorun /zap/wrk/ssti.yaml -dir ssti -cmd
   cat $file
   sleep 5
