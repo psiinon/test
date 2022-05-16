@@ -26,6 +26,6 @@ jobs:
         
         chmod +x ssti.sh
         
-        ./ssti.sh
-
+        docker run -v $(pwd):/zap/wrk/:rw --network="host" owasp/zap2docker-live /zap/wrk/ssti.sh
+        
         echo "--- all done?? ---"
