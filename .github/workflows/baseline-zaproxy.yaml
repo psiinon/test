@@ -1,0 +1,16 @@
+on:
+  workflow_dispatch:
+  schedule:
+    # At 01:00.
+    - cron:  '0 1 * * *'
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan ZAP website
+    steps:
+      - name: ZAP Scan
+        uses: zaproxy/action-baseline@master
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          target: 'https://www.zaproxy.org/'
