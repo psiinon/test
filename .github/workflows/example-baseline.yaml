@@ -12,5 +12,6 @@ jobs:
       - name: ZAP Scan
         uses: zaproxy/action-baseline@master
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           target: 'https://www.example.com/'
-          docker_name: 'owasp/zap2docker-live'
+          # docker_name: 'owasp/zap2docker-live'
