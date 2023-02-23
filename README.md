@@ -1,6 +1,10 @@
 # test
 Repo for misc tests
 
+zaproxy.org Uptime: [![Website Uptime](
+https://img.shields.io/uptimerobot/ratio/m793774242-30688163322fc45023a09c0d)](https://stats.uptimerobot.com/W03Dvh6Wk4)
+
+
 [wiki link?](../../wiki)
 
 
