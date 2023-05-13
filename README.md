@@ -4,6 +4,7 @@ Repo for misc tests
 ZAP Key Actions:
 
 ![Integration Tests](https://github.com/zaproxy/zaproxy/actions/workflows/run-integration-tests.yml/badge.svg)
+![Docker Live Release](https://github.com/zaproxy/zaproxy/actions/workflows/release-live-docker.yml/badge.svg)
 
 
 [wiki link?](../../wiki)
