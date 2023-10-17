@@ -1,0 +1,14 @@
+name: Misc temp test
+on: 
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run tests
+      run: 
+        export LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
+        export THIS_MONTH=`date -d "$(date +%Y-%m-1) 0 month" +%-m`
+        echo "last month: ${LAST_MONTH} this month: ${THIS_MONTH}"
