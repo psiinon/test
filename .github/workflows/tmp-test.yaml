@@ -15,10 +15,12 @@ jobs:
         echo "Start month? ${{ env.START_MONTH }}"
     - name: Set env 2
       run: 
-        echo "LAST_MONTH=$(date -d '${{ env.START_MONTH }} -1 month' +%-m)" >> $GITHUB_ENV
+        echo "THIS_MONTH=$(date -d '${{ env.START_MONTH }} -0 month' +%Y-%m)" >> $GITHUB_ENV
+        echo "LAST_MONTH=$(date -d '${{ env.START_MONTH }} -1 month' +%Y-%m)" >> $GITHUB_ENV
     - name: Echo env
       run: 
         # date -d "$(date +%Y-%m-1) -1 month" +%-m
         # export LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
         # export THIS_MONTH=`date -d "$(date +%Y-%m-1) 0 month" +%-m`
+        echo "Echo this month ${{ env.THIS_MONTH }}"
         echo "Echo last month ${{ env.LAST_MONTH }}"
