@@ -9,6 +9,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Run tests
       run: 
+        echo "Running date.."
+        date -d "$(date +%Y-%m-1) -1 month" +%-m
         export LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
         export THIS_MONTH=`date -d "$(date +%Y-%m-1) 0 month" +%-m`
-        echo "*${LAST_MONTH}*"
+        echo "Echo last month.."
+        echo "${LAST_MONTH}"
