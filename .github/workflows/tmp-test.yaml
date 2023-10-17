@@ -10,11 +10,6 @@ jobs:
     - name: Set env 1
       run: 
         echo "START_MONTH=$(date +%Y-%m-1)" >> $GITHUB_ENV
-    - name: Check env 1
-      run: 
-        echo "Start month? ${{ env.START_MONTH }}"
-    - name: Set env 2
-      run: 
         echo "THIS_MONTH=$(date -d '${{ env.START_MONTH }} -0 month' +%Y-%m)" >> $GITHUB_ENV
         echo "LAST_MONTH=$(date -d '${{ env.START_MONTH }} -1 month' +%Y-%m)" >> $GITHUB_ENV
     - name: Echo env
