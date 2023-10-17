@@ -7,11 +7,14 @@ jobs:
     runs-on: [ubuntu-latest]
     steps:
     - uses: actions/checkout@v2
-    - name: Run tests
+    - name: Set env
       run: 
-        echo "Running date.."
-        date -d "$(date +%Y-%m-1) -1 month" +%-m
-        export LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
-        export THIS_MONTH=`date -d "$(date +%Y-%m-1) 0 month" +%-m`
+        echo 'LAST_MONTH=$(date -d "$(date +%Y-%m-1) -1 month" +%-m)' >> $GITHUB_ENV
+    - name: Echo env
+      run: 
+        # echo "Running date.."
+        # date -d "$(date +%Y-%m-1) -1 month" +%-m
+        # export LAST_MONTH=`date -d "$(date +%Y-%m-1) -1 month" +%-m`
+        # export THIS_MONTH=`date -d "$(date +%Y-%m-1) 0 month" +%-m`
         echo "Echo last month.."
         echo "${LAST_MONTH}"
