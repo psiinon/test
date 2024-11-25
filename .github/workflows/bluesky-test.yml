@@ -7,10 +7,16 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
-      - uses: myConsciousness/bluesky-post@v5
+      - name: "Step 1"
+        id: step1
+        continue-on-error: true
+        run: exit 0
+      - name: "Post"
+        if: steps.step1.outcome != 'success'
+        uses: myConsciousness/bluesky-post@v5
         with:
-          text: "@psiinon.bsky.social trying variables agin: ${{ env.Target_Name }}"
+          text: "@psiinon.bsky.social trying conditional steps on ${{ env.Target_Name }}"
           identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
           password: ${{ secrets.BLUESKY_PASSWORD }}
         env:
-          Target_Name: Bluesky
+          Target_Name: "Github Actions"
