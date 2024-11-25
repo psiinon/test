@@ -10,7 +10,7 @@ jobs:
       - name: "Step 1"
         id: step1
         continue-on-error: true
-        run: exit 1
+        run: exit 0
       - name: "Post"
         if: steps.step1.outcome != 'success'
         uses: myConsciousness/bluesky-post@v5
@@ -20,4 +20,11 @@ jobs:
           password: ${{ secrets.BLUESKY_PASSWORD }}
         env:
           Target_Name: "Github Actions"
+      - name: "Step 2"
+        id: step2
+        continue-on-error: true
+        run: exit 1
+      - name: "Step 3"
+        if: steps.step2.outcome != 'success'
+        run: exit 1
     
