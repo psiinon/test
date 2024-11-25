@@ -9,7 +9,7 @@ jobs:
     steps:
       - uses: myConsciousness/bluesky-post@v5
         with:
-          text: "Hello, $Target_Name! cc @psiinon.bsky.social (just checking mentions work via the API)"
+          text: "@psiinon.bsky.social trying variables agin: ${{ env.Target_Name }}"
           identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
           password: ${{ secrets.BLUESKY_PASSWORD }}
         env:
