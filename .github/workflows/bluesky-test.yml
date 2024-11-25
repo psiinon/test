@@ -1,0 +1,16 @@
+name: Send Bluesky Post
+
+on:
+    workflow_dispatch:
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: myConsciousness/bluesky-post@v5
+        with:
+          text: "Hello, $Target_Name! cc @psiinon.bsky.social (just checking mentions work via the API)"
+          identifier: ${{ secrets.BLUESKY_IDENTIFIER }}
+          password: ${{ secrets.BLUESKY_PASSWORD }}
+        env:
+          Target_Name: Bluesky
